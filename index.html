@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>🎀Birthday surprise😁🎀</title>
+
+<style>
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(to right, #ff7e7e, #7ec8ff);
+  text-align: center;
+  margin: 0;
+  padding: 40px;
+  border: 8px solid black; /* page border */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* password box */
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* book container */
+#book {
+  display: none;
+  width: 700px;   /* larger book size */
+  height: 600px;
+  margin: 40px auto;
+  position: relative;
+  perspective: 1500px;
+  overflow: hidden;
+}
+
+/* pages */
+.page {
+  width: 100%;
+  height: 100%;
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transform-origin: left;
+  transition: transform 1s;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* photo */
+.page img {
+  max-width: 90%;   /* responsive inside page */
+  max-height: 70%;  /* keep within book */
+  border-radius: 10px;
+  margin-top: 15px;
+  object-fit: cover;
+}
+
+/* quote */
+.quote {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* flip */
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* floating hearts */
+.heart {
+  position: fixed;
+  bottom: -50px;
+  font-size: 30px;
+  color: red;
+  animation: floatUp 6s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+</style>
+
+<script>
+function checkPassword() {
+  var pass = document.getElementById("password").value;
+  if (pass === "Siva@2005") {
+    document.querySelector(".card").style.display = "none";
+    document.getElementById("book").style.display = "block";
+  } else {
+    document.getElementById("message").innerHTML = "Wrong Password";
+  }
+}
+
+let current = 0;
+function nextPage() {
+  let pages = document.querySelectorAll(".page");
+  if (current < pages.length) {
+    pages[current].classList.add("flipped");
+    current++;
+  }
+}
+
+// floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.fontSize = (20 + Math.random() * 30) + "px";
+  heart.style.color = ["red","pink","purple"][Math.floor(Math.random()*3)];
+  document.body.appendChild(heart);
+
+  setTimeout(() => { heart.remove(); }, 6000);
+}
+
+setInterval(createHeart, 800);
+</script>
+</head>
+
+<body>
+<div class="card">
+  <h2>🔒 Enter Password</h2>
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="checkPassword()">Open Book</button>
+  <p id="message"></p>
+</div>
+
+<div id="book" onclick="nextPage()">
+  <div class="page" style="z-index:8;">
+    <div class="quote">You make my world brighter</div>
+    <img src="photo1.jpeg">
+  </div>
+  <div class="page" style="z-index:7;">
+    <div class="quote">Every moment with you is special</div>
+    <img src="photo2.jpeg">
+  </div>
+  <div class="page" style="z-index:6;">
+    <div class="quote">Your smile is my favorite view</div>
+    <img src="photo3.jpeg">
+  </div>
+  <div class="page" style="z-index:5;">
+    <div class="quote">Life feels beautiful because of you</div>
+    <img src="photo4.jpeg">
+  </div>
+  <div class="page" style="z-index:4;">
+    <div class="quote">You are my happiness</div>
+    <img src="photo5.jpeg">
+  </div>
+  <div class="page" style="z-index:3;">
+    <div class="quote">My heart belongs to you</div>
+    <img src="photo6.jpeg">
+  </div>
+  <div class="page" style="z-index:2;">
+    <div class="quote">Forever grateful for you</div>
+    <img src="photo7.jpeg">
+  </div>
+  <!-- New page added -->
+  <div class="page" style="z-index:1;">
+    <div class="quote">Now, Pages are waiting to collect our memories!!! 
+        😚Happy Birthday mama😘 once again💕👑💝</div>
+  </div>
+</div>
+</body>
+</html>
